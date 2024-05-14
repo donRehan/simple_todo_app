@@ -46,9 +46,14 @@ export class FormComponent {
     //console.log(this.todo_item.valid);
     //this.todo_list.unshift(this.todo_item.get('item')?.value);
     //console.log(this.todo_item.get('item'));
-    this.todo_list.unshift(this.todo_item.get('item')?.value);
+    let todo_element = {
+        todo_item: this.todo_item.get('item')?.value,
+        is_done: false
+    }
+    this.todo_list.unshift(todo_element);
     //to solve this issue set strict to false
     //console.log(this.todo_item.get('item')?.value);
+    console.log(todo_element.todo_item);
     this.todo_item.reset();
   }
 
