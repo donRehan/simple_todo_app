@@ -2,3 +2,15 @@
   text-decoration: line-through;
   color: gray;
 }
+
+.xButton {
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 500%;
+  cursor: pointer;
+}
+
+.xButton:hover {
+  background-color: darkred;
+}
