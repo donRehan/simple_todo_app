@@ -1,26 +1,42 @@
-<form [formGroup]="todo_item" (ngSubmit)="onSubmit()">
+<div class="app">
+  <form [formGroup]="todo_item" (ngSubmit)="onSubmit()" style="
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    ">
+    <p>
+      <label for="item" style="
+        padding-left: 70px;
+        color: red;
+        ">TODO </label>
+      <br>
+      <input type="text" id="item" name="item" formControlName="item" placeholder="Task..">
+    </p>
+    <!-- to be used after having functionality
+    <div *ngIf="!todo_item.valid" style="
+      color: red;
+      font-size: 10px;
+      ">Min length should be 5</div>
+    -->
   <p>
-    <label for="item">Test </label>
-    <br>
-    <input type="text" id="item" name="item" formControlName="item" placeholder="Task..">
+    <button [disabled]="!todo_item.valid" type="submit" hidden>Submit</button>
   </p>
-  <!-- to be used after having functionality
-  <div *ngIf="!todo_item.valid" style="
-    color: red;
-    font-size: 10px;
-    ">Min length should be 5</div>
-  -->
-<p>
-  <button [disabled]="!todo_item.valid" type="submit">Submit</button>
-</p>
-</form>
+  </form>
 
-<div>
-  <p *ngFor="let item of todo_list; let i = index" [ngClass]="item.is_done">
-    <input type="checkbox" (click)="handleClick(item)" class="custom-checkbox">
-    {{item.todo_item}}
-    <button class="xButton" (click)="deleteItem(i)">x</button>
-  </p>
+  <div
+    style="
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    "
+    class="list"
+  >
+    <p *ngFor="let item of todo_list; let i = index" [ngClass]="item.is_done">
+      <input type="checkbox" (click)="handleClick(item)" class="custom-checkbox">
+      {{item.todo_item}}
+      <button class="xButton" (click)="deleteItem(i)">x</button>
+    </p>
+  </div>
 </div>
 
 <!--
