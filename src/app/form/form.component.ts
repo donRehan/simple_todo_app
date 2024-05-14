@@ -10,6 +10,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms'
 export class FormComponent {
   todo_item: FormGroup;
   todo_list = [];
+  is_done = "";
 
     constructor(private fb: FormBuilder,
     private cd: ChangeDetectorRef
@@ -21,6 +22,12 @@ export class FormComponent {
 
     handleClick(item: any) {
     console.log(`you clicked ${item}`);
+    if(this.is_done == "clicked"){
+      this.is_done = "";
+    }
+    else{
+      this.is_done = "clicked";
+    }
   }
 
     onSubmit(){

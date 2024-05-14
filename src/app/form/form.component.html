@@ -16,8 +16,8 @@
 </form>
 
 <div>
-  <p *ngFor="let item of todo_list">
-    <input type="checkbox" (click)="handleClick(item)">
+  <p *ngFor="let item of todo_list" [ngClass]="is_done">
+    <input type="checkbox" (click)="handleClick(item)" class="custom-checkbox">
     {{item}}
   </p>
 </div>
