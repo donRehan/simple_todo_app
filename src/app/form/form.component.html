@@ -16,9 +16,10 @@
 </form>
 
 <div>
-  <p *ngFor="let item of todo_list" [ngClass]="is_done">
+  <p *ngFor="let item of todo_list; let i = index" [ngClass]="is_done">
     <input type="checkbox" (click)="handleClick(item)" class="custom-checkbox">
     {{item}}
+    <button (click)="deleteItem(i)">x</button>
   </p>
 </div>
 

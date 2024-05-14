@@ -11,6 +11,12 @@ export class FormComponent {
   todo_item: FormGroup;
   todo_list = [];
   is_done = "";
+    /*
+  data = [
+    todo_item: "someitem",
+    is_done: false
+  ]
+  */
 
     constructor(private fb: FormBuilder,
     private cd: ChangeDetectorRef
@@ -20,6 +26,7 @@ export class FormComponent {
   })
   }
 
+  //reason you have issue , each item should have a property called is_done
     handleClick(item: any) {
     console.log(`you clicked ${item}`);
     if(this.is_done == "clicked"){
@@ -28,6 +35,10 @@ export class FormComponent {
     else{
       this.is_done = "clicked";
     }
+  }
+
+  deleteItem(index: number){
+    this.todo_list.splice(index,1);
   }
 
     onSubmit(){
@@ -40,11 +51,5 @@ export class FormComponent {
     //console.log(this.todo_item.get('item')?.value);
     this.todo_item.reset();
   }
-
-    //pass todo_list
-  getTodoList(){
-    return this.todo_list;
-  }
-
 
 }
