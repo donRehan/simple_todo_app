@@ -10,7 +10,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms'
 export class FormComponent {
   todo_item: FormGroup;
   todo_list = [];
-  is_done = "";
     /*
   data = [
     todo_item: "someitem",
@@ -26,14 +25,13 @@ export class FormComponent {
   })
   }
 
-  //reason you have issue , each item should have a property called is_done
     handleClick(item: any) {
     console.log(`you clicked ${item}`);
-    if(this.is_done == "clicked"){
-      this.is_done = "";
+    if(item.is_done == "clicked"){
+      item.is_done = "";
     }
     else{
-      this.is_done = "clicked";
+      item.is_done = "clicked";
     }
   }
 
