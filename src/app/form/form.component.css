@@ -12,14 +12,17 @@
   user-select: none;
 }
 
+ul li:hover {
+  background-color: #edeef0;
+}
+
 ul  li{
+  text-align: center;
   list-style-type: none;
   font-size: 17px;
-  padding: 12px 8px 12px 50px;
   user-select: none;
   cursor: pointer;
   position: relative;
-  border-radius: 40px;
   transition-duration: 0.4s;
 }
 
@@ -27,22 +30,11 @@ ul li.clicked {
   text-decoration: line-through;
 }
 
-ul li:hover {
-  background-color: #edeef0;
-}
-
-
-ul li.clicked::before {
-  background-image: url('../../../images/checked.png');
-}
-
 ul li::before {
   content: '';
   position: absolute;
   height: 28px;
   width: 28px;
-  border-radius: 50%;
-  background-image: url('../../../images/unchecked.png');
   background-size: cover;
   background-position: center;
   top: 20px;
