@@ -38,7 +38,7 @@
       class="list-container"
     >
     <ul>
-      <li *ngFor="let item of todo_list; let i = index" [ngClass]="item.is_done" clickable (click)="handleClick(item)">
+      <li *ngFor="let item of todo_list; let i = index" [ngClass]="item.is_done" class="here" clickable (click)="handleClick(item)">
         {{item.todo_item}}
         <button class="xButton" (click)="deleteItem(i)">🗑</button>
       </li>
