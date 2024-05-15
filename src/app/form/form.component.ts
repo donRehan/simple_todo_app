@@ -10,6 +10,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms'
 })
 export class FormComponent {
   todo_item: FormGroup;
+  //TODO: Change todolist to include task_date, where null means no date
   todo_list = [];
   listContainer: any;
     /*
@@ -24,7 +25,6 @@ export class FormComponent {
   ) {
 
     this.listContainer = document.querySelector('.list-container');
-    this.getData('todo_list');
     this.todo_item = new FormGroup({
     item: new FormControl("",[Validators.required,Validators.minLength(3)]),
   })
@@ -65,18 +65,4 @@ export class FormComponent {
     localStorage.setItem("data", JSON.stringify(this.todo_list));
     //console.log(JSON.stringify(this.todo_list))
   }
-
-  //TODO: Delete those
-  public saveData(key: string, value: string) {
-    localStorage.setItem(key, value);
-  }
-
-  public getData(key: string) {
-    return localStorage.getItem(key)
-  }
-
-  public removeData(key: string) {
-    localStorage.removeItem(key);
-  }
-
 }
