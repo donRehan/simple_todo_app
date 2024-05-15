@@ -4,9 +4,10 @@
       <form [formGroup]="todo_item" (ngSubmit)="onSubmit()" style="
         align-items: center;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
         ">
-        <p>
         <!--  <label for="item" style="
             padding-left: 70px;
             color: red;
@@ -14,7 +15,6 @@
         -->
           <br>
           <input type="text" id="item" name="item" formControlName="item" placeholder="Task..">
-        </p>
         <!-- to be used after having functionality
         <div *ngIf="!todo_item.valid" style="
           color: red;

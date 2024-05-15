@@ -8,9 +8,8 @@
   margin-top: 20px;
   list-style: none;
   font-size: 17px;
-  padding: 12px 8px 12px 50px;
+  padding: 12px 8px 12px;
   user-select: none;
-  cursor: pointer;
 }
 
 ul  li{
