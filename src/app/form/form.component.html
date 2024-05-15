@@ -7,7 +7,9 @@
         flex-direction: row;
         width: 100%;
         justify-content: space-between;
-        ">
+        "
+        autocomplete="off"
+      >
         <!--  <label for="item" style="
             padding-left: 70px;
             color: red;
@@ -38,7 +40,7 @@
     <ul>
       <li *ngFor="let item of todo_list; let i = index" [ngClass]="item.is_done" clickable (click)="handleClick(item)">
         {{item.todo_item}}
-        <button class="xButton" (click)="deleteItem(i)">x</button>
+        <button class="xButton" (click)="deleteItem(i)">🗑</button>
       </li>
     </ul>
     </div>

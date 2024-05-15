@@ -19,11 +19,18 @@ ul  li{
   user-select: none;
   cursor: pointer;
   position: relative;
+  border-radius: 40px;
+  transition-duration: 0.4s;
 }
 
 ul li.clicked {
   text-decoration: line-through;
 }
+
+ul li:hover {
+  background-color: #edeef0;
+}
+
 
 ul li.clicked::before {
   background-image: url('../../../images/checked.png');
@@ -38,26 +45,33 @@ ul li::before {
   background-image: url('../../../images/unchecked.png');
   background-size: cover;
   background-position: center;
-  top: 12px;
+  top: 20px;
   left: 8px;
 }
 
 .xButton {
-  background-color: red;
-  color: white;
+  flex:  1;
   border: none;
-  border-radius: 500%;
+  outline: none;
+  padding: 16px 50px;
+	background-color: transparent;
   cursor: pointer;
+  transition-duration: 0.4s;
+	font-size: 18px;
+	font-weight: bold;
+	margin-top: 10px;
+	font-family: "Pacific";
+	padding: 1px;
+	transition-duration: 0.4s;
 }
 
 .xButton:hover {
-  background-color: darkred;
+	background-color: #ffc600;
 }
 
 .container {
   width : 100%;
   min-height : 100vh;
-  background : linear-gradient(135deg, #153677, #4e085f);
   padding: 10px;
 }
 
@@ -93,8 +107,17 @@ input{
   border: none;
   outline: none;
   padding: 16px 50px;
-  background: #ff5945;
+	background-color: #ffffff;
   font-size: 16px;
   cursor: pointer;
   border-radius: 40px;
+  transition-duration: 0.9s;
+  border-style: solid;
+	border-color: #222222;
+
 }
+
+#subbutton:hover{
+	background-color: #ffc600;
+}
+
