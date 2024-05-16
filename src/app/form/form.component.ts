@@ -2,6 +2,10 @@ import { SelectorListContext } from '@angular/compiler';
 import { Component,ChangeDetectorRef } from '@angular/core';
 import { FormBuilder } from '@angular/forms'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {DateAdapter} from '@angular/material/core';
 
 @Component({
   selector: 'app-form',
@@ -13,10 +17,13 @@ export class FormComponent {
   //TODO: Change todolist to include task_date, where null means no date
   todo_list = [];
   listContainer: any;
+  tomorrow = new Date();
+  dateControl: any;
     /*
   data = [
     todo_item: "someitem",
-    is_done: false
+    is_done: false,
+    date: null;
   ]
   */
 
@@ -28,7 +35,8 @@ export class FormComponent {
     this.todo_item = new FormGroup({
     item: new FormControl("",[Validators.required,Validators.minLength(3)]),
   })
-  this.todo_list = JSON.parse(localStorage.getItem("data") || "[]");
+    this.todo_list = JSON.parse(localStorage.getItem("data") || "[]");
+    this.dateControl = new FormControl('', []);
   }
 
     handleClick(item: any) {
@@ -48,21 +56,22 @@ export class FormComponent {
   }
 
     onSubmit(){
-    //console.log(this.todo_item.get('item')?.value);
-    //console.log(this.todo_item.valid);
-    //this.todo_list.unshift(this.todo_item.get('item')?.value);
-    //console.log(this.todo_item.get('item'));
-    let todo_element = {
+    //delete please
+    this.tomorrow.setDate(this.tomorrow.getDate() + 1);
+   let todo_element = {
         todo_item: this.todo_item.get('item')?.value,
-        is_done: false
+        is_done: false,
+        //date: this.tomorrow.toISOString().split('T')[0]
+        //date: new Date().toISOString().split('T')[0]
     }
     this.todo_list.unshift(todo_element);
-    //to solve this issue set strict to false
-    //console.log(this.todo_item.get('item')?.value);
-    //console.log(todo_element.todo_item);
     this.todo_item.reset();
-    //this.saveData('todo_list', JSON.stringify(this.todo_list));
     localStorage.setItem("data", JSON.stringify(this.todo_list));
-    //console.log(JSON.stringify(this.todo_list))
+  //let date = new Date();
+  //console.log(`${date.getTime()}:${date.getMonth() + 1}:${date.getFullYear()}`);
+  }
+
+  test_ing(){
+    console.log(this.dateControl.value)
   }
 }

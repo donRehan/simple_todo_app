@@ -1,3 +1,15 @@
+<form (ngSubmit)="test_ing()">
+    <mat-form-field class="example-full-width" >
+      <mat-label>Choose a date</mat-label>
+      <input matInput [matDatepicker]="picker" [formControl]="dateControl">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker touchUi #picker></mat-datepicker>
+    </mat-form-field>
+  <button type="submit">Submit</button>
+</form>
+
+<!--
 <div class="container">
   <div class="app">
     <div class="row">
@@ -10,11 +22,6 @@
         "
         autocomplete="off"
       >
-        <!--  <label for="item" style="
-            padding-left: 70px;
-            color: red;
-            ">TODO </label>
-        -->
           <br>
           <input type="text" id="item" name="item" formControlName="item" placeholder="Task..">
         <!-- to be used after having functionality
@@ -22,7 +29,6 @@
           color: red;
           font-size: 10px;
           ">Min length should be 5</div>
-        -->
       <p>
         <button [disabled]="!todo_item.valid" type="submit" id="subbutton" >Add</button>
       </p>
@@ -41,14 +47,15 @@
       <li *ngFor="let item of todo_list; let i = index" [ngClass]="item.is_done" class="here" clickable (click)="handleClick(item)">
         {{item.todo_item}}
         <button class="xButton" (click)="deleteItem(i)">🗑</button>
+          <p *ngIf="item.hasOwnProperty('date')" style="
+            font-size: 15px;
+            color: #333333;
+            font-style: normal;
+            ">{{item.date}}<p>
       </li>
     </ul>
     </div>
   </div>
 </div>
-
-<!--
-@for (item of todo_list; track item){
-<p> <input type="checkbox" (click)="handleClick(item)"> {{item}} </p>
-}
 -->
+
