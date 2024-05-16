@@ -71,7 +71,9 @@ export class FormComponent {
   //console.log(`${date.getTime()}:${date.getMonth() + 1}:${date.getFullYear()}`);
   }
 
+  //Get the current date , NOTE : Day is in index 0
   test_ing(){
-    console.log(this.dateControl.value)
+    let current_date = this.dateControl.value.toString().split(' ');
+    console.log(`current date: ${current_date[1]}:${current_date[2]}:${current_date[3]}`);
   }
 }
