@@ -76,4 +76,11 @@ export class FormComponent {
     let current_date = this.dateControl.value.toString().split(' ');
     console.log(`current date: ${current_date[1]}:${current_date[2]}:${current_date[3]}`);
   }
+
+   onItemInput(event: any) {
+    const enteredValue = event.target.value;
+    console.log('User typed:', enteredValue);
+    // Perform any additional actions based on the entered value here
+  }
+
 }
