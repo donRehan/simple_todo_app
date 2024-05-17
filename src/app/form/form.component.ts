@@ -83,4 +83,9 @@ export class FormComponent {
     // Perform any additional actions based on the entered value here
   }
 
+  toggle_datePicker(){
+    let date_picker = document.querySelector('.date-picker');
+    date_picker.classList.toggle('example-full-width');
+  }
+
 }

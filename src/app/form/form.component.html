@@ -36,10 +36,23 @@
           font-size: 10px;
           ">Min length should be 5</div>
         -->
+          <p style="margin-right: 15px;" clickable (click)="toggle_datePicker()">📅</p>
       <p>
         <button [disabled]="!todo_item.valid" type="submit" id="subbutton" >Add</button>
       </p>
       </form>
+
+    <form (ngSubmit)="test_ing()" class="example-full-width date-picker">
+        <mat-form-field  >
+          <mat-label>Choose a date</mat-label>
+          <input matInput [matDatepicker]="picker" [formControl]="dateControl">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker touchUi #picker></mat-datepicker>
+        </mat-form-field>
+      <button type="submit">Submit</button>
+    </form>
+
     </div>
 
     <div
@@ -54,6 +67,11 @@
       <li *ngFor="let item of todo_list; let i = index" [ngClass]="item.is_done" class="here" clickable (click)="handleClick(item)">
         {{item.todo_item}}
         <button class="xButton" (click)="deleteItem(i)">🗑</button>
+        <p style="font-size: 15px;
+           color: #777777;
+          "
+           *ngIf="item.date"
+            > {{item.date}} </p>
       </li>
     </ul>
     </div>
