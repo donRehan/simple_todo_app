@@ -6,6 +6,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {DateAdapter} from '@angular/material/core';
+import {MatMenuModule} from '@angular/material/menu';
 
 @Component({
   selector: 'app-form',
@@ -19,7 +20,7 @@ export class FormComponent {
   listContainer: any;
   tomorrow = new Date();
   dateControl: any;
-  Filter= null;
+  Filter= "not_filtered";
     /*
   data = [
     todo_item: "someitem",
@@ -95,6 +96,19 @@ export class FormComponent {
     const enteredValue = event.target.value;
     console.log('User typed:', enteredValue);
     // Perform any additional actions based on the entered value here
+  }
+
+  filter_setToday(){
+    this.Filter = "Today";
+  }
+  filter_setCompleted(){
+    this.Filter = "Completed";
+  }
+  filter_setNotcompleted(){
+    this.Filter = "Not_Completed";
+  }
+  unfilter(){
+    this.Filter = "not_filtered";
   }
 
 }
