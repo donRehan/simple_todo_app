@@ -19,6 +19,7 @@ export class FormComponent {
   listContainer: any;
   tomorrow = new Date();
   dateControl: any;
+  Filter= null;
     /*
   data = [
     todo_item: "someitem",
@@ -34,13 +35,13 @@ export class FormComponent {
     this.listContainer = document.querySelector('.list-container');
     this.todo_item = new FormGroup({
     item: new FormControl("",[Validators.required,Validators.minLength(3)]),
+    date: new FormControl("")
   })
     this.todo_list = JSON.parse(localStorage.getItem("data") || "[]");
     this.dateControl = new FormControl('', []);
   }
 
     handleClick(item: any) {
-    console.log(`you clicked ${item}`);
     if(item.is_done == "clicked"){
       item.is_done = "";
     }
@@ -61,8 +62,21 @@ export class FormComponent {
    let todo_element = {
         todo_item: this.todo_item.get('item')?.value,
         is_done: false,
-        //date: this.tomorrow.toISOString().split('T')[0]
-        //date: new Date().toISOString().split('T')[0]
+        date: (() => {
+          //Returns a an array of either 1 (no date provided) or 4 elements
+          if (this.todo_item.get('date')?.value != null) {
+            let selectedDate = this.todo_item.get('date')?.value.toString().split(' ');
+            if (selectedDate.length > 1)
+              return (`${selectedDate[0]}  ${selectedDate[2]}/${selectedDate[1]}/${selectedDate[3]}`);
+            return null;
+          }
+          return null;
+        })()
+    }
+    if(todo_element.date === null){
+      //remove date from the list
+      delete todo_element.date;
+      console.log("todo_element");
     }
     this.todo_list.unshift(todo_element);
     this.todo_item.reset();
@@ -74,18 +88,13 @@ export class FormComponent {
   //Get the current date , NOTE : Day is in index 0
   test_ing(){
     let current_date = this.dateControl.value.toString().split(' ');
-    console.log(`current date: ${current_date[1]}:${current_date[2]}:${current_date[3]}`);
+    console.log(`${current_date[1]}:${current_date[2]}:${current_date[3]}`);
   }
 
    onItemInput(event: any) {
     const enteredValue = event.target.value;
     console.log('User typed:', enteredValue);
     // Perform any additional actions based on the entered value here
-  }
-
-  toggle_datePicker(){
-    let date_picker = document.querySelector('.date-picker');
-    date_picker.classList.toggle('example-full-width');
   }
 
 }
