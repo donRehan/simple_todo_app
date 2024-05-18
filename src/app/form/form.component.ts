@@ -82,8 +82,10 @@ export class FormComponent {
     this.todo_list.unshift(todo_element);
     this.todo_item.reset();
     localStorage.setItem("data", JSON.stringify(this.todo_list));
-  //let date = new Date();
-  //console.log(`${date.getTime()}:${date.getMonth() + 1}:${date.getFullYear()}`);
+
+    //hide the form after submission :: decide leave or remove
+    let form_input = document.getElementsByClassName("form-input");
+    form_input!.item(0)!.setAttribute("style","display:none");
   }
 
   //Get the current date , NOTE : Day is in index 0
@@ -109,6 +111,11 @@ export class FormComponent {
   }
   unfilter(){
     this.Filter = "not_filtered";
+  }
+  unhide(){
+    //get element with id form-input and set it to display to flex
+    let form_input = document.getElementsByClassName("form-input");
+    form_input!.item(0)!.setAttribute("style","display:flex");
   }
 
 }

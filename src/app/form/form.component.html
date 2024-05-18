@@ -4,25 +4,28 @@
       <form [formGroup]="todo_item" (ngSubmit)="onSubmit()" style="
         align-items: center;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         width: 100%;
         justify-content: space-between;
         "
         autocomplete="off"
       >
           <br>
+        <div class = "form-input">
           <input type="text" id="item" name="item" formControlName="item" placeholder="Task.." >
-          <mat-form-field  >
-            <input matInput [matDatepicker]="picker" formControlName="date">
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker touchUi #picker></mat-datepicker>
-          </mat-form-field>
-      <p>
-        <button [disabled]="!todo_item.valid" type="submit" id="subbutton" >Add</button>
-      </p>
+          <mat-form-field >
+              <input matInput [matDatepicker]="picker" formControlName="date">
+              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker touchUi #picker></mat-datepicker>
+            </mat-form-field>
+          <p>
+            <button [disabled]="!todo_item.valid" type="submit" id="subbutton" style="margin-right: 30px;" >Add</button>
+          </p>
+      </div>
       </form>
     </div>
 
+    <button id="subbutton" (click)="unhide()" style="margin-bottom: 25px;">+</button>
     <div style="display: flex; flex-direction: column;">
       <button mat-button [matMenuTriggerFor]="menu" style="font-size: 17px;">Filter Y</button>
       <mat-menu #menu="matMenu">
