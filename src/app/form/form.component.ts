@@ -18,7 +18,6 @@ export class FormComponent {
   //TODO: Change todolist to include task_date, where null means no date
   todo_list = [];
   listContainer: any;
-  tomorrow = new Date();
   dateControl: any;
   Filter= "not_filtered";
     /*
@@ -58,8 +57,6 @@ export class FormComponent {
   }
 
     onSubmit(){
-    //delete please
-    this.tomorrow.setDate(this.tomorrow.getDate() + 1);
    let todo_element = {
         todo_item: this.todo_item.get('item')?.value,
         is_done: false,
@@ -68,7 +65,7 @@ export class FormComponent {
           if (this.todo_item.get('date')?.value != null) {
             let selectedDate = this.todo_item.get('date')?.value.toString().split(' ');
             if (selectedDate.length > 1)
-              return (`${selectedDate[0]}  ${selectedDate[2]}/${selectedDate[1]}/${selectedDate[3]}`);
+               return date_handler(selectedDate);
             return null;
           }
           return null;
@@ -77,7 +74,6 @@ export class FormComponent {
     if(todo_element.date === null){
       //remove date from the list
       delete todo_element.date;
-      console.log("todo_element");
     }
     this.todo_list.unshift(todo_element);
     this.todo_item.reset();
@@ -118,4 +114,12 @@ export class FormComponent {
     form_input!.item(0)!.setAttribute("style","display:flex");
   }
 
+}
+
+function date_handler(selectedDate: any){
+  let today = new Date();
+  let today_date = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+  if(today_date > `${selectedDate[2]}/${selectedDate[1]}/${selectedDate[3]}`)
+    return null
+  return (`${selectedDate[0]}  ${selectedDate[2]}/${selectedDate[1]}/${selectedDate[3]}`);
 }
