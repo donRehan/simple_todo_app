@@ -1,6 +1,7 @@
 <div class="container">
   <div class="app">
     <div class="row">
+      <div class = "form-input">
       <form [formGroup]="todo_item" (ngSubmit)="onSubmit()" style="
         align-items: center;
         display: flex;
@@ -11,7 +12,6 @@
         autocomplete="off"
       >
           <br>
-        <div class = "form-input">
           <input type="text" id="item" name="item" formControlName="item" placeholder="Task.." >
           <mat-form-field >
               <mat-label>Choose a date</mat-label>
@@ -23,11 +23,12 @@
           <p>
             <button [disabled]="!todo_item.valid" type="submit" id="subbutton" style="margin-right: 30px;" >Add</button>
           </p>
-      </div>
       </form>
+          <button id="subbutton" style="margin-top: 25px;" (click)="hide()">Cancel</button>
+      </div>
     </div>
 
-    <button id="subbutton" (click)="unhide()" style="margin-bottom: 25px;">+</button>
+    <button id="addbutton" (click)="unhide()" style="margin-bottom: 25px;">+</button>
     <div style="display: flex; flex-direction: column;">
       <button mat-button [matMenuTriggerFor]="menu" style="font-size: 17px;">Filter Y</button>
       <mat-menu #menu="matMenu">

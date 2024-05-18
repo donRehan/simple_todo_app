@@ -113,6 +113,12 @@ export class FormComponent {
     let form_input = document.getElementsByClassName("form-input");
     form_input!.item(0)!.setAttribute("style","display:flex");
   }
+    hide(){
+    //get element with id form-input and set it to display to flex
+    let form_input = document.getElementsByClassName("form-input");
+    form_input!.item(0)!.setAttribute("style","display:none");
+    this.todo_item.reset();
+  }
 
 }
 

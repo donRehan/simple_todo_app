@@ -109,13 +109,32 @@ input{
   transition-duration: 0.9s;
   border-style: solid;
 	border-color: #222222;
-
 }
 
+#addbutton{
+  border: none;
+  outline: none;
+  padding: 16px 50px;
+	background-color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 40px;
+  transition-duration: 0.9s;
+  border-style: solid;
+	border-color: #222222;
+  align-self: center;
+  padding-right: 25px;
+  padding-left: 25px;
+}
+
+#addbutton:hover{
+	background-color: #ffc600;
+}
 #subbutton:hover{
 	background-color: #ffc600;
 }
 
 .form-input {
   display: none;
+  flex-direction: column;
 }
