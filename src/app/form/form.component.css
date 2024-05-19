@@ -135,6 +135,6 @@ input{
 }
 
 .form-input {
-  display: none;
+  display: flex;
   flex-direction: column;
 }

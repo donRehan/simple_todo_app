@@ -20,6 +20,7 @@ export class FormComponent {
   listContainer: any;
   dateControl: any;
   Filter= "not_filtered";
+  form_submitted = false;
     /*
   data = [
     todo_item: "someitem",
@@ -79,9 +80,8 @@ export class FormComponent {
     this.todo_item.reset();
     localStorage.setItem("data", JSON.stringify(this.todo_list));
 
-    //hide the form after submission :: decide leave or remove
-    let form_input = document.getElementsByClassName("form-input");
-    form_input!.item(0)!.setAttribute("style","display:none");
+    //update this
+    this.form_submitted = false;
   }
 
   //Get the current date , NOTE : Day is in index 0
@@ -110,13 +110,11 @@ export class FormComponent {
   }
   unhide(){
     //get element with id form-input and set it to display to flex
-    let form_input = document.getElementsByClassName("form-input");
-    form_input!.item(0)!.setAttribute("style","display:flex");
+    this.form_submitted = true;
   }
     hide(){
     //get element with id form-input and set it to display to flex
-    let form_input = document.getElementsByClassName("form-input");
-    form_input!.item(0)!.setAttribute("style","display:none");
+    this.form_submitted = false;
     this.todo_item.reset();
   }
 
