@@ -1,6 +1,6 @@
 <div class="container">
   <div class="app">
-    <div class="row">
+    <div class="row" *ngIf="form_submitted">
       <div class = "form-input" *ngIf="form_submitted">
       <form [formGroup]="todo_item" (ngSubmit)="onSubmit()" style="
         align-items: center;
@@ -12,7 +12,7 @@
         autocomplete="off"
       >
           <br>
-          <input type="text" id="item" name="item" formControlName="item" placeholder="Task.." style="background: #edeef0; margin-bottom: 25px;" >
+          <input type="text" id="item" name="item" formControlName="item" placeholder="Task name" style="background: #f5f5f5; margin-bottom: 25px;" >
           <mat-form-field >
               <mat-label>Choose a date</mat-label>
               <input matInput [matDatepicker]="picker" formControlName="date">
@@ -24,13 +24,11 @@
             <button [disabled]="!todo_item.valid" type="submit" id="subbutton" style="margin-top: 25px;" >Add</button>
           </p>
       </form>
-          <button id="subbutton" style="margin-top: 25px;" (click)="hide()">Cancel</button>
+          <button id="subbutton" style="margin-top: 25px; align-self: center;" (click)="hide()">Cancel</button>
       </div>
     </div>
 
-    <button id="addbutton" (click)="unhide()" style="margin-bottom: 25px;">+</button>
     <div style="display: flex; flex-direction: column;">
-      <button mat-button [matMenuTriggerFor]="menu" style="font-size: 17px;">Filter Y</button>
       <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="filter_setToday()">Due today</button>
         <button mat-menu-item (click)="filter_setCompleted()">Completed</button>
@@ -40,61 +38,66 @@
       <p style="font-size: 15px; color: #777777; text-align: center;" *ngIf="Filter != 'not_filtered'">{{Filter}}</p>
     </div>
 
-    <div
-      style="
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      "
-      class="list-container"
-    >
-    <ul *ngIf="Filter === 'not_filtered'">
-      <li *ngFor="let item of todo_list; let i = index" [ngClass]="item.is_done" class="here" clickable (click)="handleClick(item)">
-        {{item.todo_item}}
-        <button class="xButton" (click)="deleteItem(i)">🗑</button>
-        <p style="font-size: 15px;
-           color: #777777;
-          "
-           *ngIf="item.date"
-            > {{item.date}} </p>
-      </li>
-    </ul>
+    <div class="app-body" *ngIf="!form_submitted">
+      <div
+        style="
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        "
+        class="list-container"
+      >
+      <button id="addbutton" (click)="unhide()" style="margin-bottom: 25px;">+</button>
+      <button mat-button [matMenuTriggerFor]="menu" style="font-size: 17px;">Filter Y</button>
 
-    <div *ngIf="Filter === 'Today'">
-      <ul *ngFor="let item of todo_list; let i = index">
-          <li *ngIf="item.date == null" [ngClass]="item.is_done" (click)="handleClick(item)">{{item.todo_item}}
-          <button class="xButton" (click)="deleteItem(i)">🗑</button>
-          </li>
-      </ul>
-    </div>
-
-    <div *ngIf="Filter === 'Completed'">
-      <ul *ngFor="let item of todo_list; let i = index">
-          <li *ngIf="item.is_done" [ngClass]="item.is_done" (click)="handleClick(item)">{{item.todo_item}}
+      <ul *ngIf="Filter === 'not_filtered'">
+        <li *ngFor="let item of todo_list; let i = index" [ngClass]="item.is_done" class="here" clickable (click)="handleClick(item)">
+          {{item.todo_item}}
           <button class="xButton" (click)="deleteItem(i)">🗑</button>
           <p style="font-size: 15px;
              color: #777777;
             "
              *ngIf="item.date"
               > {{item.date}} </p>
-          </li>
+        </li>
       </ul>
-    </div>
 
-    <div *ngIf="Filter === 'Not_Completed'">
-      <ul *ngFor="let item of todo_list; let i = index">
-          <li *ngIf="!item.is_done" [ngClass]="item.is_done" (click)="handleClick(item)">{{item.todo_item}}
-          <button class="xButton" (click)="deleteItem(i)">🗑</button>
-          <p style="font-size: 15px;
-             color: #777777;
-            "
-             *ngIf="item.date"
-              > {{item.date}} </p>
-          </li>
-      </ul>
-    </div>
+      <div *ngIf="Filter === 'Today'">
+        <ul *ngFor="let item of todo_list; let i = index">
+            <li *ngIf="item.date == null" [ngClass]="item.is_done" (click)="handleClick(item)">{{item.todo_item}}
+            <button class="xButton" (click)="deleteItem(i)">🗑</button>
+            </li>
+        </ul>
+      </div>
+
+      <div *ngIf="Filter === 'Completed'">
+        <ul *ngFor="let item of todo_list; let i = index">
+            <li *ngIf="item.is_done" [ngClass]="item.is_done" (click)="handleClick(item)">{{item.todo_item}}
+            <button class="xButton" (click)="deleteItem(i)">🗑</button>
+            <p style="font-size: 15px;
+               color: #777777;
+              "
+               *ngIf="item.date"
+                > {{item.date}} </p>
+            </li>
+        </ul>
+      </div>
+
+      <div *ngIf="Filter === 'Not_Completed'">
+        <ul *ngFor="let item of todo_list; let i = index">
+            <li *ngIf="!item.is_done" [ngClass]="item.is_done" (click)="handleClick(item)">{{item.todo_item}}
+            <button class="xButton" (click)="deleteItem(i)">🗑</button>
+            <p style="font-size: 15px;
+               color: #777777;
+              "
+               *ngIf="item.date"
+                > {{item.date}} </p>
+            </li>
+        </ul>
+      </div>
 
 
+      </div>
     </div>
   </div>
 </div>
