@@ -11,6 +11,9 @@
   font-size: 17px;
   padding: 12px 8px 12px;
   user-select: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 ul li:hover {
@@ -98,6 +101,8 @@ input{
 }
 
 #subbutton{
+  margin-top: 25px;
+  align-self: center;
   flex:  1;
   border: none;
   outline: none;
@@ -125,6 +130,7 @@ input{
   align-self: center;
   padding-right: 25px;
   padding-left: 25px;
+  margin-bottom: 25px;
 }
 
 #addbutton:hover{
@@ -140,4 +146,37 @@ input{
   padding-top: 25px;
   padding-bottom: 25px;
   background: linear-gradient(to bottom, #ffffff, #f5f5f5);
+}
+
+.form-group {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-between;
+}
+
+#item {
+  background: #f5f5f5;
+  margin-bottom: 25px;
+}
+
+.div-display {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter_type {
+  font-size: 15px;
+  color: #777777;
+  text-align: center;
+}
+
+.filter_button {
+  font-size: 17px;
+}
+
+.item_date {
+  font-size: 15px;
+  color: #777777;
 }

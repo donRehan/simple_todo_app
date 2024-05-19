@@ -2,17 +2,11 @@
   <div class="app">
     <div class="row" *ngIf="form_submitted">
       <div class = "form-input" *ngIf="form_submitted">
-      <form [formGroup]="todo_item" (ngSubmit)="onSubmit()" style="
-        align-items: center;
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        justify-content: space-between;
-        "
+      <form [formGroup]="todo_item" (ngSubmit)="onSubmit()" class="form-group"
         autocomplete="off"
       >
           <br>
-          <input type="text" id="item" name="item" formControlName="item" placeholder="Task name" style="background: #f5f5f5; margin-bottom: 25px;" >
+          <input type="text" id="item" name="item" formControlName="item" placeholder="Task name"  >
           <mat-form-field >
               <mat-label>Choose a date</mat-label>
               <input matInput [matDatepicker]="picker" formControlName="date">
@@ -21,44 +15,33 @@
               <mat-datepicker touchUi #picker></mat-datepicker>
           </mat-form-field>
           <p>
-            <button [disabled]="!todo_item.valid" type="submit" id="subbutton" style="margin-top: 25px;" >Add</button>
+            <button [disabled]="!todo_item.valid" type="submit" id="subbutton"  >Add</button>
           </p>
       </form>
-          <button id="subbutton" style="margin-top: 25px; align-self: center;" (click)="hide()">Cancel</button>
+          <button id="subbutton" (click)="hide()">Cancel</button>
       </div>
     </div>
 
-    <div style="display: flex; flex-direction: column;">
+    <div class="div-display" >
       <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="filter_setToday()">Due today</button>
         <button mat-menu-item (click)="filter_setCompleted()">Completed</button>
         <button mat-menu-item (click)="filter_setNotcompleted()">Not completed</button>
         <button mat-menu-item (click)="unfilter()">Remove filters</button>
       </mat-menu>
-      <p style="font-size: 15px; color: #777777; text-align: center;" *ngIf="Filter != 'not_filtered'">{{Filter}}</p>
     </div>
 
     <div class="app-body" *ngIf="!form_submitted">
-      <div
-        style="
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        "
-        class="list-container"
-      >
-      <button id="addbutton" (click)="unhide()" style="margin-bottom: 25px;">+</button>
-      <button mat-button [matMenuTriggerFor]="menu" style="font-size: 17px;">Filter Y</button>
+      <div class="list-container" >
+      <button id="addbutton" (click)="unhide()" >+</button>
+      <button mat-button [matMenuTriggerFor]="menu" class="filter_button">Filter Y</button>
+      <p class="filter_type" *ngIf="Filter != 'not_filtered'">{{Filter}}</p>
 
       <ul *ngIf="Filter === 'not_filtered'">
         <li *ngFor="let item of todo_list; let i = index" [ngClass]="item.is_done" class="here" clickable (click)="handleClick(item)">
           {{item.todo_item}}
           <button class="xButton" (click)="deleteItem(i)">🗑</button>
-          <p style="font-size: 15px;
-             color: #777777;
-            "
-             *ngIf="item.date"
-              > {{item.date}} </p>
+          <p *ngIf="item.date" class="item_date" > {{item.date}} </p>
         </li>
       </ul>
 
@@ -74,11 +57,7 @@
         <ul *ngFor="let item of todo_list; let i = index">
             <li *ngIf="item.is_done" [ngClass]="item.is_done" (click)="handleClick(item)">{{item.todo_item}}
             <button class="xButton" (click)="deleteItem(i)">🗑</button>
-            <p style="font-size: 15px;
-               color: #777777;
-              "
-               *ngIf="item.date"
-                > {{item.date}} </p>
+            <p *ngIf="item.date" class="item_date" > {{item.date}} </p>
             </li>
         </ul>
       </div>
@@ -87,11 +66,7 @@
         <ul *ngFor="let item of todo_list; let i = index">
             <li *ngIf="!item.is_done" [ngClass]="item.is_done" (click)="handleClick(item)">{{item.todo_item}}
             <button class="xButton" (click)="deleteItem(i)">🗑</button>
-            <p style="font-size: 15px;
-               color: #777777;
-              "
-               *ngIf="item.date"
-                > {{item.date}} </p>
+            <p *ngIf="item.date" class="item_date" > {{item.date}} </p>
             </li>
         </ul>
       </div>
