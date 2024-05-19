@@ -12,7 +12,7 @@
         autocomplete="off"
       >
           <br>
-          <input type="text" id="item" name="item" formControlName="item" placeholder="Task.." >
+          <input type="text" id="item" name="item" formControlName="item" placeholder="Task.." style="background: #edeef0; margin-bottom: 25px;" >
           <mat-form-field >
               <mat-label>Choose a date</mat-label>
               <input matInput [matDatepicker]="picker" formControlName="date">
@@ -21,7 +21,7 @@
               <mat-datepicker touchUi #picker></mat-datepicker>
           </mat-form-field>
           <p>
-            <button [disabled]="!todo_item.valid" type="submit" id="subbutton" style="margin-right: 30px;" >Add</button>
+            <button [disabled]="!todo_item.valid" type="submit" id="subbutton" style="margin-top: 25px;" >Add</button>
           </p>
       </form>
           <button id="subbutton" style="margin-top: 25px;" (click)="hide()">Cancel</button>
